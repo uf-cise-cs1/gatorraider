@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="pakupaku-benchmark">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/pakupaku-benchmark.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
