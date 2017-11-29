@@ -41,7 +41,7 @@ public class _Node implements Node
         _Node[] options = Arrays.copyOf(neighbors, neighbors.length);
 
         if (!canReverse)
-            options[direction] = null;
+            options[Node.getReverse(direction)] = null;
 
         int dir = -1;
 
