@@ -12,8 +12,8 @@
  * clearly documented. We welcome any comments and suggestions regarding the code.
  */
 package game.models;
-import java.util.Random;
 import java.util.List;
+import game.system.Random;
 
 /*
  * This interface defines the contract between the game engine and the controllers. It provides all
@@ -40,7 +40,7 @@ public interface Game
 
 	Game copy();											// Returns an exact copy of the game (forward model)
 	Maze getCurMaze();										// Returns the current maze information
-	Random rng = new Random(0);						// Random number generator with fixed seed
+	Random rng = new Random(0);				// Random number generator with fixed seed
 
 	int[] advanceGame(int attackerDir, int[] defenderDirs);	// Advances the game using the actions (directions) supplied; returns all directions played [Attacker, Enemy1, Enemy2, Enemy3, Enemy4]
 	boolean gameOver();										// Returns true if the hero has lost all her lives or if MAX_LEVELS has been reached
