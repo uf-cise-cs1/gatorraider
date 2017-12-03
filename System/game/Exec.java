@@ -108,7 +108,7 @@ public class Exec
      */
 	public void runGame(AttackerController attackerController, DefenderController defenderController, boolean visual, int delay)
 	{
-//		Game.rng = new java.util.Random();
+//		Game.rng = new java.util._Random();
 		
 		game=new _Game_();
 		game.newGame();
@@ -123,7 +123,8 @@ public class Exec
 
 		while(!game.gameOver())
 		{
-			long due=System.currentTimeMillis()+ Game.DELAY;
+//			long due=System.currentTimeMillis()+ Game.DELAY;
+			long due = Game.DELAY;
 			game.advanceGame(attackerController.update(game.copy(), due), defenderController.update(game.copy(), due));
 
 	        try{Thread.sleep(delay);}catch(Exception e){}
