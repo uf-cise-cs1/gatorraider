@@ -87,7 +87,8 @@ public class Exec
 
 			while(!game.gameOver())
 			{
-				long due=System.currentTimeMillis()+ _Game.DELAY;
+//				long due=System.currentTimeMillis()+ _Game.DELAY;
+				long due = _Game.DELAY;
 		        game.advanceGame(attackerController.update(game.copy(), due), defenderController.update(game.copy(), due));
 			}
 			
@@ -347,7 +348,7 @@ public class Exec
 	        			wait();
 	                }
 
-	        		setPacDir(pacMan.update(game.copy(), System.currentTimeMillis() + Game.DELAY));
+	        		setPacDir(pacMan.update(game.copy(), /*System.currentTimeMillis() +*/ _Game.DELAY));
 	            } 
 	        	catch(InterruptedException e) 
 	        	{
@@ -395,7 +396,7 @@ public class Exec
 	        			wait();
 	                }
 
-	        		setGhostDirs(ghosts.update(game.copy(), System.currentTimeMillis()+ Game.DELAY));
+	        		setGhostDirs(ghosts.update(game.copy(), /*System.currentTimeMillis()+*/ _Game.DELAY));
 	            } 
 	        	catch(InterruptedException e) 
 	        	{
