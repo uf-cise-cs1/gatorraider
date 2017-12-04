@@ -23,7 +23,12 @@ public final class _Maze implements Maze
     public List<Node> getPillNodes() { return Arrays.asList(Arrays.copyOf(pillNodes, pillNodes.length)); }
     public List<Node> getPowerPillNodes() { return Arrays.asList(Arrays.copyOf(powerPillNodes, powerPillNodes.length)); }
     public List<Node> getJunctionNodes() { return Arrays.asList(Arrays.copyOf(junctionNodes, junctionNodes.length)); }
-
+    public void fillJunctionNodes(){
+        int junctionIndex = 0;
+        for (_Node a : graph)
+            if (a.getNumNeighbors() > 2)
+                junctionNodes[junctionIndex++] = a;
+    }
     protected DuoMap<Node, Node, Integer> distances;
     protected _Node[] pillNodes, powerPillNodes, junctionNodes;
     protected _Node[] graph;
@@ -106,8 +111,8 @@ public final class _Maze implements Maze
                 else if (node.getPowerPillIndex() >= 0)
                     powerPillNodes[powerPillIndex++] = node;
 
-                if (node.getNumNeighbors() > 2)
-                    junctionNodes[junctionIndex++] = node;
+                /*if (node.getNumNeighbors() > 2)
+                    junctionNodes[junctionIndex++] = node;*/
             }
 
             // Connect the nodes.
@@ -121,7 +126,7 @@ public final class _Maze implements Maze
                 }
                 nodes[index].setNeighbors(newNeighbors);
             }
-
+            fillJunctionNodes();
             // Set up the starting positions.
             this.initialHeroPosition = graph[initialHeroIndex];
             this.lairPosition = graph[lairIndex];
