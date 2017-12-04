@@ -1,5 +1,6 @@
 package game;
 
+import java.io.PrintWriter;
 import game.models.Game;
 import game.system.*;
 import game.view.*;
@@ -29,10 +30,14 @@ public class Exec
 
 		if (args.length > 0)
 		{
-			if (args[0].toLowerCase().equals("-testexample"))
-				exec.runExperiment(attacker, exampleDefender, 20);
+			if (args[0].toLowerCase().equals("-debugexample"))
+				exec.runExperiment(attacker, exampleDefender, 20, true);
+			else if (args[0].toLowerCase().equals("-debugstudent"))
+				exec.runExperiment(attacker, studentDefender, 20, true);
+			else if (args[0].toLowerCase().equals("-testexample"))
+				exec.runExperiment(attacker, exampleDefender, 20, false);
 			else if (args[0].toLowerCase().equals("-teststudent"))
-				exec.runExperiment(attacker, studentDefender, 20);
+				exec.runExperiment(attacker, studentDefender, 20, false);
 			else if (args[0].toLowerCase().equals("-visualexample"))
 				exec.runGame(attacker, exampleDefender, true, _Game.DELAY);
 			else
@@ -73,12 +78,27 @@ public class Exec
      * Running many games and looking at the average score (and standard deviation/error) helps to get a better
      * idea of how well the controller is likely to do in the competition.
      */
-    public void runExperiment(AttackerController attackerController, DefenderController defenderController, int trials)
+    public void runExperiment(AttackerController attackerController, DefenderController defenderController, int trials, boolean debug)
     {
-    	double avgScore=0;
-    	
+		PrintWriter writer = null;
+		double avgScore = 0;
+    	int tick = 0;
 		game=new _Game_();
-		
+
+		if (debug)
+		{
+			try
+			{
+				writer = new PrintWriter("experiment.txt", "UTF-8");
+				System.out.println("Logging data to experiment.txt.");
+			}
+			catch (Exception e)
+			{
+				System.out.println("Couldn't open log file; disabling debugging data.");
+				debug = false;
+			}
+		}
+
 		for(int i=0;i<trials;i++)
 		{
 			game.newGame();
@@ -87,9 +107,21 @@ public class Exec
 
 			while(!game.gameOver())
 			{
-//				long due=System.currentTimeMillis()+ _Game.DELAY;
 				long due = _Game.DELAY;
-		        game.advanceGame(attackerController.update(game.copy(), due), defenderController.update(game.copy(), due));
+				int attackerDirection = attackerController.update(game.copy(), due);
+				int[] defenderDirections = defenderController.update(game.copy(), due);
+
+				if (debug)
+				{
+					writer.print("[Tick #" + tick + "] Attacker: [" + attackerDirection + "]; ");
+					for (int index = 0; index < 4; index++)
+					{
+						writer.print("Defender #" + index + ": [" + defenderDirections[index] + "]; ");
+					}
+					writer.println("");
+				}
+		        game.advanceGame(attackerDirection, defenderDirections);
+				tick++;
 			}
 			
 			avgScore+=game.getScore();
@@ -99,6 +131,11 @@ public class Exec
 		}
 		
 		System.out.println(avgScore/trials);
+		if (writer != null)
+		{
+			writer.flush();
+			writer.close();
+		}
     }
     
     /*
