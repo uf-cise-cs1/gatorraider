@@ -1,9 +1,6 @@
 package game;
 
 import java.io.PrintWriter;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-
 import game.models.Game;
 import game.system.*;
 import game.view.*;
@@ -25,60 +22,30 @@ public class Exec
 	//Several options are listed - simply remove comments to use the option you want
 	public static void main(String[] args)
 	{
-//		Exec exec=new Exec();
+		Exec exec=new Exec();
 
 		AttackerController attacker = new Devastator();
 		DefenderController exampleDefender = new OriginalDefenders();
 		DefenderController studentDefender = new StudentController();
-		Executor thread = Executors.newSingleThreadExecutor();
 
 		if (args.length > 0)
 		{
 			if (args[0].toLowerCase().equals("-debugexample"))
-				thread.execute(new Runnable() { public void run()
-				{
-					runExperiment(attacker, exampleDefender, 100, true);
-				} });
+				exec.runExperiment(attacker, exampleDefender, 100, true);
 			else if (args[0].toLowerCase().equals("-debugstudent"))
-				thread.execute(new Runnable() { public void run()
-				{
-					runExperiment(attacker, studentDefender, 100, true);
-				} });
+				exec.runExperiment(attacker, studentDefender, 100, true);
 			else if (args[0].toLowerCase().equals("-testexample"))
-				thread.execute(new Runnable() { public void run()
-				{
-					runExperiment(attacker, exampleDefender, 100, false);
-				} });
+				exec.runExperiment(attacker, exampleDefender, 100, false);
 			else if (args[0].toLowerCase().equals("-teststudent"))
-				thread.execute(new Runnable() { public void run()
-				{
-					runExperiment(attacker, studentDefender, 100, false);
-				} });
+				exec.runExperiment(attacker, studentDefender, 100, false);
 			else if (args[0].toLowerCase().equals("-visualexample"))
-				thread.execute(new Runnable() { public void run()
-				{
-					runGame(attacker, exampleDefender, true, _Game.DELAY);
-				} });
+				exec.runGame(attacker, exampleDefender, true, _Game.DELAY);
 			else
-				thread.execute(new Runnable() { public void run()
-				{
-					runGame(attacker, studentDefender, true, _Game.DELAY);
-				} });
+				exec.runGame(attacker, studentDefender, true, _Game.DELAY);
 		}
 		else
-			thread.execute(new Runnable() { public void run()
-			{
-				runGame(attacker, studentDefender, true, _Game.DELAY);
-			} });
+			exec.runGame(attacker, studentDefender, true, _Game.DELAY);
 
-		try
-		{
-			thread.wait();
-		}
-		catch (Exception e)
-		{
-			System.err.println("Error: thread interrupted.");
-		}
 		//this can be used for numerical testing (non-visual, no delays)
 //		exec.runExperiment(new RandomAttacker(),new AttractRepelGhosts(true),100);
 		
@@ -111,12 +78,12 @@ public class Exec
      * Running many games and looking at the average score (and standard deviation/error) helps to get a better
      * idea of how well the controller is likely to do in the competition.
      */
-    public static void runExperiment(AttackerController attackerController, DefenderController defenderController, int trials, boolean debug)
+    public void runExperiment(AttackerController attackerController, DefenderController defenderController, int trials, boolean debug)
     {
 		PrintWriter writer = null;
 		double avgScore = 0;
     	int tick = 0;
-		_Game_ game = new _Game_();
+		game=new _Game_();
 
 		if (debug)
 		{
@@ -140,8 +107,7 @@ public class Exec
 
 			while(!game.gameOver())
 			{
-				long due = 0;
-//				long due = _Game.DELAY;
+				long due = _Game.DELAY;
 				int attackerDirection = attackerController.update(game.copy(), due);
 				int[] defenderDirections = defenderController.update(game.copy(), due);
 
@@ -178,11 +144,11 @@ public class Exec
      * is purely for visual purposes (as otherwise the game could be too fast if controllers compute quickly. 
      * For testing, this can be set to 0 for fasted game play.
      */
-	public static void runGame(AttackerController attackerController, DefenderController defenderController, boolean visual, int delay)
+	public void runGame(AttackerController attackerController, DefenderController defenderController, boolean visual, int delay)
 	{
 //		Game.rng = new java.util._Random();
 		
-		_Game_ game=new _Game_();
+		game=new _Game_();
 		game.newGame();
 
 		GameView gv=null;
