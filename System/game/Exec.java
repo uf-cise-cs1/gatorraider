@@ -71,6 +71,14 @@ public class Exec
 				runGame(attacker, studentDefender, true, _Game.DELAY);
 			} });
 
+		try
+		{
+			thread.wait();
+		}
+		catch (Exception e)
+		{
+			System.err.println("Error: thread interrupted.");
+		}
 		//this can be used for numerical testing (non-visual, no delays)
 //		exec.runExperiment(new RandomAttacker(),new AttractRepelGhosts(true),100);
 		
