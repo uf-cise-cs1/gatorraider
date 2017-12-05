@@ -72,6 +72,7 @@ public class _Game implements Game
 		copy.levelTime=levelTime;
 		copy.totalTime=totalTime;
 		copy.defenderKillMultiplier = defenderKillMultiplier;
+		copy.score = score;
 		copy.gameOver=gameOver;
 		copy.attacker = attacker.clone();
 		copy.livesRemaining=livesRemaining;
