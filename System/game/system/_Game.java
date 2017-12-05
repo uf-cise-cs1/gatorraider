@@ -12,9 +12,7 @@
 package game.system;
 import game.models.*;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 /*
  * Simple implementation of the game. The class Game contains all code relating to the
@@ -46,6 +44,7 @@ public class _Game implements Game
 	protected int livesRemaining;
 	protected boolean extraLife;
 
+	protected Random rng = new Random(0);
 	/////////////////////////////////////////////////////////////////////////////
 	/////////////////  Constructors and Initializers   //////////////////////////
 	/////////////////////////////////////////////////////////////////////////////
@@ -60,7 +59,12 @@ public class _Game implements Game
 			if(mazes[i]==null)
 				mazes[i]=new _Maze(i);
 	}
-	
+
+	public Random getRng()
+	{
+		return rng;
+	}
+
 	//Creates an exact copy of the game
 	public Game copy()
 	{
@@ -189,7 +193,7 @@ public class _Game implements Game
 			else
 			{
 				List<Integer> options = attacker.getPossibleDirs(true);
-				direction = options.get(Game.rng.nextInt(options.size()));
+				direction = options.get(rng.nextInt(options.size()));
 			}
 
 		return direction;		
@@ -232,7 +236,7 @@ public class _Game implements Game
 			else
 			{
 				List<Integer> options = defenders[whichEnemy].getPossibleDirs();
-				direction = options.get(Game.rng.nextInt(options.size()));
+				direction = options.get(rng.nextInt(options.size()));
 			}
 		}
 
@@ -274,7 +278,7 @@ public class _Game implements Game
 			
 			reverse = true;
 		}
-		else if (levelTime > 1 && Game.rng.nextDouble() < Game.DEFENDER_REVERSAL)	//random enemy reversal
+		else if (levelTime > 1 && rng.nextDouble() < Game.DEFENDER_REVERSAL)	//random enemy reversal
 			reverse=true;
 		
 		return reverse;

@@ -24,7 +24,7 @@ public final class StudentController implements DefenderController
 			Defender defender = enemies.get(i);
 			List<Integer> possibleDirs = defender.getPossibleDirs();
 			if (possibleDirs.size() != 0)
-				actions[i]=possibleDirs.get(Game.rng.nextInt(possibleDirs.size()));
+				actions[i]=possibleDirs.get(game.getRng().nextInt(possibleDirs.size()));
 			else
 				actions[i] = -1;
 		}

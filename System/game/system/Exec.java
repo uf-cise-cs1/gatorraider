@@ -1,8 +1,7 @@
-package game;
+package game.system;
 
 import java.io.PrintWriter;
 import game.models.Game;
-import game.system.*;
 import game.view.*;
 
 import game.controllers.*;
@@ -87,6 +86,7 @@ public class Exec
 
 		if (debug)
 		{
+			game.rng = new RandomWithOutput(0);
 			try
 			{
 				writer = new PrintWriter("experiment.txt", "UTF-8");
