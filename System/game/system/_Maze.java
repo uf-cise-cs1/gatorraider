@@ -57,6 +57,8 @@ public final class _Maze implements Maze
     //Loads all the nodes from files and initialises all maze-specific information.
     private void loadNodes(String fileName)
     {
+        nodes = new DuoMap<Integer, Integer, Node>();
+
         final int NODE_LENGTH = 9;
         try
         {
