@@ -14,6 +14,7 @@ public interface Maze
 
     Node getInitialAttackerPosition();   // Returns the starting position of the hero
     Node getInitialDefendersPosition();  // Returns the starting position of the defenders (i.e., first node AFTER leaving the lair)
+    Node getNode(int x, int y);          // Get Node from X,Y position
 
     int getNumberPills();                // Total number of pills in the maze
     int getNumberPowerPills();           // Total number of power pills in the maze

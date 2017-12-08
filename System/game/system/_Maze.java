@@ -23,6 +23,8 @@ public final class _Maze implements Maze
     public List<Node> getPillNodes() { return Arrays.asList(Arrays.copyOf(pillNodes, pillNodes.length)); }
     public List<Node> getPowerPillNodes() { return Arrays.asList(Arrays.copyOf(powerPillNodes, powerPillNodes.length)); }
     public List<Node> getJunctionNodes() { return Arrays.asList(Arrays.copyOf(junctionNodes, junctionNodes.length)); }
+    public Node getNode(int x, int y) { return nodes.get(x, y); }
+
     public void fillJunctionNodes(){
         int junctionIndex = 0;
         for (_Node a : graph)
@@ -30,6 +32,7 @@ public final class _Maze implements Maze
                 junctionNodes[junctionIndex++] = a;
     }
     protected DuoMap<Node, Node, Integer> distances;
+    protected DuoMap<Integer, Integer, Node> nodes;
     protected _Node[] pillNodes, powerPillNodes, junctionNodes;
     protected _Node[] graph;
 
@@ -86,14 +89,14 @@ public final class _Maze implements Maze
             int lairIndex = preamble[1];
             int initialEnemiesIndex = preamble[2];
 
-            _Node[] nodes = new _Node[preamble[3]];
+            _Node[] nodeList = new _Node[preamble[3]];
             this.pillNodes = new _Node[preamble[4]];
             this.powerPillNodes = new _Node[preamble[5]];
             this.junctionNodes = new _Node[preamble[6]];
             this.width = preamble[7];
             this.height = preamble[8];
 
-            this.graph = nodes;
+            this.graph = nodeList;
             int nodeIndex=0;
             int pillIndex=0;
             int powerPillIndex=0;
@@ -104,7 +107,7 @@ public final class _Maze implements Maze
             {
                 _Node node = new _Node(entry[1], entry[2], entry[7], entry[8], this);
 
-                nodes[nodeIndex++] = node;
+                nodeList[nodeIndex++] = node;
 
                 if (node.getPillIndex() >= 0)
                     pillNodes[pillIndex++] = node;
@@ -116,15 +119,17 @@ public final class _Maze implements Maze
             }
 
             // Connect the nodes.
-            for (int index = 0; index < nodes.length; index++)
+            for (int index = 0; index < nodeList.length; index++)
             {
+                _Node thisNode = nodeList[index];
                 _Node[] newNeighbors = new _Node[4];
                 for (int neighborNo = 0; neighborNo < 4; neighborNo++)
                 {
                     int neighborIndex = nodeData.get(index)[neighborNo+3];
-                    newNeighbors[neighborNo] = (neighborIndex == -1 ? null : nodes[neighborIndex]);
+                    newNeighbors[neighborNo] = (neighborIndex == -1 ? null : nodeList[neighborIndex]);
                 }
-                nodes[index].setNeighbors(newNeighbors);
+                thisNode.setNeighbors(newNeighbors);
+                nodes.put(thisNode.getX(), thisNode.getY(), thisNode);
             }
             fillJunctionNodes();
             // Set up the starting positions.
