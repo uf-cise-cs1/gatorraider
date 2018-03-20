@@ -1,12 +1,11 @@
 package ufl.cs1.controllers;
 
 import game.controllers.DefenderController;
-import game.models.Defender;
-import game.models.Game;
+import game.models.*;
 
 import java.util.List;
 
-public final class StudentController implements DefenderController
+public final class StudentDefenderController implements DefenderController
 {
 	public void init(Game game) { }
 
@@ -28,6 +27,11 @@ public final class StudentController implements DefenderController
 			else
 				actions[i] = -1;
 		}
+		Node myNode = game.getAttacker().getLocation();
+		System.out.println("Node " + myNode + ": " + myNode.getX() + "," + myNode.getY());
+		myNode = game.getCurMaze().getNode(myNode.getX(), myNode.getY());
+		System.out.println("Node " + myNode + ": " + myNode.getX() + "," + myNode.getY());
+
 		return actions;
 	}
 }

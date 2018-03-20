@@ -8,7 +8,8 @@ import game.view.*;
 import game.controllers.*;
 import game.controllers.example.*;
 import game.controllers.benchmark.*;
-import ufl.cs1.controllers.StudentController;
+import ufl.cs1.controllers.StudentAttackerController;
+import ufl.cs1.controllers.StudentDefenderController;
 
 /*
  * This class may be used to execute the game in timed or un-timed modes, with or without
@@ -24,27 +25,27 @@ public class Exec
 	{
 		Exec exec=new Exec();
 
-		AttackerController attacker = new Devastator();
-		DefenderController exampleDefender = new OriginalDefenders();
-		DefenderController studentDefender = new StudentController();
+		AttackerController studentAttacker = new StudentAttackerController();
+		AttackerController exampleAttacker = new Devastator();
+		DefenderController defender = new OriginalDefenders();
 
 		if (args.length > 0)
 		{
 			if (args[0].toLowerCase().equals("-debugexample"))
-				exec.runExperiment(attacker, exampleDefender, 100, true);
+				exec.runExperiment(exampleAttacker, defender, 100, true);
 			else if (args[0].toLowerCase().equals("-debugstudent"))
-				exec.runExperiment(attacker, studentDefender, 100, true);
+				exec.runExperiment(studentAttacker, defender, 100, true);
 			else if (args[0].toLowerCase().equals("-testexample"))
-				exec.runExperiment(attacker, exampleDefender, 100, false);
+				exec.runExperiment(exampleAttacker, defender, 100, false);
 			else if (args[0].toLowerCase().equals("-teststudent"))
-				exec.runExperiment(attacker, studentDefender, 100, false);
+				exec.runExperiment(studentAttacker, defender, 100, false);
 			else if (args[0].toLowerCase().equals("-visualexample"))
-				exec.runGame(attacker, exampleDefender, true, _Game.DELAY);
+				exec.runGame(exampleAttacker, defender, true, _Game.DELAY);
 			else
-				exec.runGame(attacker, studentDefender, true, _Game.DELAY);
+				exec.runGame(studentAttacker, defender, true, _Game.DELAY);
 		}
 		else
-			exec.runGame(attacker, studentDefender, true, _Game.DELAY);
+			exec.runGame(studentAttacker, defender, true, _Game.DELAY);
 
 		//this can be used for numerical testing (non-visual, no delays)
 //		exec.runExperiment(new RandomAttacker(),new AttractRepelGhosts(true),100);
