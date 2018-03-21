@@ -39,7 +39,7 @@ public final class GameView extends JComponent
 
     public GameView(_Game_ game)
     {
-        this(game, "gator", "uga", "ut", "fsu", "lsu", "edible-ghost");
+        this(game, "gator", "uga", "ut", "fsu", "lsu", "edible");
     }
 
     public GameView(_Game_ game, String attacker, String defender1, String defender2, String defender3, String defender4, String edible)
