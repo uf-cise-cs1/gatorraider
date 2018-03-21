@@ -39,62 +39,67 @@ public final class GameView extends JComponent
 
     public GameView(_Game_ game)
     {
+        this(game, "gator", "uga", "ut", "fsu", "lsu", "edible-ghost");
+    }
+
+    public GameView(_Game_ game, String attacker, String defender1, String defender2, String defender3, String defender4, String edible)
+    {
         this.game=game;
         images=loadImages();
+
+        pacmanImgs[Game.Direction.UP][0]=getImage(attacker + "-up-normal.png");
+        pacmanImgs[Game.Direction.UP][1]=getImage(attacker + "-up-open.png");
+        pacmanImgs[Game.Direction.UP][2]=getImage(attacker + "-up-closed.png");
+        pacmanImgs[Game.Direction.RIGHT][0]=getImage(attacker + "-right-normal.png");
+        pacmanImgs[Game.Direction.RIGHT][1]=getImage(attacker + "-right-open.png");
+        pacmanImgs[Game.Direction.RIGHT][2]=getImage(attacker + "-right-closed.png");
+        pacmanImgs[Game.Direction.DOWN][0]=getImage(attacker + "-down-normal.png");
+        pacmanImgs[Game.Direction.DOWN][1]=getImage(attacker + "-down-open.png");
+        pacmanImgs[Game.Direction.DOWN][2]=getImage(attacker + "-down-closed.png");
+        pacmanImgs[Game.Direction.LEFT][0]=getImage(attacker + "-left-normal.png");
+        pacmanImgs[Game.Direction.LEFT][1]=getImage(attacker + "-left-open.png");
+        pacmanImgs[Game.Direction.LEFT][2]=getImage(attacker + "-left-closed.png");
         
-        pacmanImgs[Game.Direction.UP][0]=getImage("mspacman-up-normal.png");
-        pacmanImgs[Game.Direction.UP][1]=getImage("mspacman-up-open.png");
-        pacmanImgs[Game.Direction.UP][2]=getImage("mspacman-up-closed.png");
-        pacmanImgs[Game.Direction.RIGHT][0]=getImage("mspacman-right-normal.png");
-        pacmanImgs[Game.Direction.RIGHT][1]=getImage("mspacman-right-open.png");
-        pacmanImgs[Game.Direction.RIGHT][2]=getImage("mspacman-right-closed.png");
-        pacmanImgs[Game.Direction.DOWN][0]=getImage("mspacman-down-normal.png");
-        pacmanImgs[Game.Direction.DOWN][1]=getImage("mspacman-down-open.png");
-        pacmanImgs[Game.Direction.DOWN][2]=getImage("mspacman-down-closed.png");
-        pacmanImgs[Game.Direction.LEFT][0]=getImage("mspacman-left-normal.png");
-        pacmanImgs[Game.Direction.LEFT][1]=getImage("mspacman-left-open.png");
-        pacmanImgs[Game.Direction.LEFT][2]=getImage("mspacman-left-closed.png");
+        ghostsImgs[0][Game.Direction.UP][0]=getImage(defender1 + "-up-1.png");
+        ghostsImgs[0][Game.Direction.UP][1]=getImage(defender1 + "-up-2.png");
+        ghostsImgs[0][Game.Direction.RIGHT][0]=getImage(defender1 + "-right-1.png");
+        ghostsImgs[0][Game.Direction.RIGHT][1]=getImage(defender1 + "-right-2.png");
+        ghostsImgs[0][Game.Direction.DOWN][0]=getImage(defender1 + "-down-1.png");
+        ghostsImgs[0][Game.Direction.DOWN][1]=getImage(defender1 + "-down-2.png");
+        ghostsImgs[0][Game.Direction.LEFT][0]=getImage(defender1 + "-left-1.png");
+        ghostsImgs[0][Game.Direction.LEFT][1]=getImage(defender1 + "-left-2.png");
         
-        ghostsImgs[0][Game.Direction.UP][0]=getImage("blinky-up-1.png");
-        ghostsImgs[0][Game.Direction.UP][1]=getImage("blinky-up-2.png");
-        ghostsImgs[0][Game.Direction.RIGHT][0]=getImage("blinky-right-1.png");
-        ghostsImgs[0][Game.Direction.RIGHT][1]=getImage("blinky-right-2.png");
-        ghostsImgs[0][Game.Direction.DOWN][0]=getImage("blinky-down-1.png");
-        ghostsImgs[0][Game.Direction.DOWN][1]=getImage("blinky-down-2.png");
-        ghostsImgs[0][Game.Direction.LEFT][0]=getImage("blinky-left-1.png");
-        ghostsImgs[0][Game.Direction.LEFT][1]=getImage("blinky-left-2.png");
+        ghostsImgs[1][Game.Direction.UP][0]=getImage(defender2 + "-up-1.png");
+        ghostsImgs[1][Game.Direction.UP][1]=getImage(defender2 + "-up-2.png");
+        ghostsImgs[1][Game.Direction.RIGHT][0]=getImage(defender2 + "-right-1.png");
+        ghostsImgs[1][Game.Direction.RIGHT][1]=getImage(defender2 + "-right-2.png");
+        ghostsImgs[1][Game.Direction.DOWN][0]=getImage(defender2 + "-down-1.png");
+        ghostsImgs[1][Game.Direction.DOWN][1]=getImage(defender2 + "-down-2.png");
+        ghostsImgs[1][Game.Direction.LEFT][0]=getImage(defender2 + "-left-1.png");
+        ghostsImgs[1][Game.Direction.LEFT][1]=getImage(defender2 + "-left-2.png");
         
-        ghostsImgs[1][Game.Direction.UP][0]=getImage("pinky-up-1.png");
-        ghostsImgs[1][Game.Direction.UP][1]=getImage("pinky-up-2.png");
-        ghostsImgs[1][Game.Direction.RIGHT][0]=getImage("pinky-right-1.png");
-        ghostsImgs[1][Game.Direction.RIGHT][1]=getImage("pinky-right-2.png");
-        ghostsImgs[1][Game.Direction.DOWN][0]=getImage("pinky-down-1.png");
-        ghostsImgs[1][Game.Direction.DOWN][1]=getImage("pinky-down-2.png");
-        ghostsImgs[1][Game.Direction.LEFT][0]=getImage("pinky-left-1.png");
-        ghostsImgs[1][Game.Direction.LEFT][1]=getImage("pinky-left-2.png");
+        ghostsImgs[2][Game.Direction.UP][0]=getImage(defender3 + "-up-1.png");
+        ghostsImgs[2][Game.Direction.UP][1]=getImage(defender3 + "-up-2.png");
+        ghostsImgs[2][Game.Direction.RIGHT][0]=getImage(defender3 + "-right-1.png");
+        ghostsImgs[2][Game.Direction.RIGHT][1]=getImage(defender3 + "-right-2.png");
+        ghostsImgs[2][Game.Direction.DOWN][0]=getImage(defender3 + "-down-1.png");
+        ghostsImgs[2][Game.Direction.DOWN][1]=getImage(defender3 + "-down-2.png");
+        ghostsImgs[2][Game.Direction.LEFT][0]=getImage(defender3 + "-left-1.png");
+        ghostsImgs[2][Game.Direction.LEFT][1]=getImage(defender3 + "-left-2.png");
         
-        ghostsImgs[2][Game.Direction.UP][0]=getImage("inky-up-1.png");
-        ghostsImgs[2][Game.Direction.UP][1]=getImage("inky-up-2.png");
-        ghostsImgs[2][Game.Direction.RIGHT][0]=getImage("inky-right-1.png");
-        ghostsImgs[2][Game.Direction.RIGHT][1]=getImage("inky-right-2.png");
-        ghostsImgs[2][Game.Direction.DOWN][0]=getImage("inky-down-1.png");
-        ghostsImgs[2][Game.Direction.DOWN][1]=getImage("inky-down-2.png");
-        ghostsImgs[2][Game.Direction.LEFT][0]=getImage("inky-left-1.png");
-        ghostsImgs[2][Game.Direction.LEFT][1]=getImage("inky-left-2.png");
+        ghostsImgs[3][Game.Direction.UP][0]=getImage(defender4 + "-up-1.png");
+        ghostsImgs[3][Game.Direction.UP][1]=getImage(defender4 + "-up-2.png");
+        ghostsImgs[3][Game.Direction.RIGHT][0]=getImage(defender4 + "-right-1.png");
+        ghostsImgs[3][Game.Direction.RIGHT][1]=getImage(defender4 + "-right-2.png");
+        ghostsImgs[3][Game.Direction.DOWN][0]=getImage(defender4 + "-down-1.png");
+        ghostsImgs[3][Game.Direction.DOWN][1]=getImage(defender4 + "-down-2.png");
+        ghostsImgs[3][Game.Direction.LEFT][0]=getImage(defender4 + "-left-1.png");
+        ghostsImgs[3][Game.Direction.LEFT][1]=getImage(defender4 + "-left-2.png");
         
-        ghostsImgs[3][Game.Direction.UP][0]=getImage("sue-up-1.png");
-        ghostsImgs[3][Game.Direction.UP][1]=getImage("sue-up-2.png");
-        ghostsImgs[3][Game.Direction.RIGHT][0]=getImage("sue-right-1.png");
-        ghostsImgs[3][Game.Direction.RIGHT][1]=getImage("sue-right-2.png");
-        ghostsImgs[3][Game.Direction.DOWN][0]=getImage("sue-down-1.png");
-        ghostsImgs[3][Game.Direction.DOWN][1]=getImage("sue-down-2.png");
-        ghostsImgs[3][Game.Direction.LEFT][0]=getImage("sue-left-1.png");
-        ghostsImgs[3][Game.Direction.LEFT][1]=getImage("sue-left-2.png");
-        
-        ghostsImgs[4][0][0]=getImage("edible-ghost-1.png");
-        ghostsImgs[4][0][1]=getImage("edible-ghost-2.png");
-        ghostsImgs[5][0][0]=getImage("edible-ghost-blink-1.png");
-        ghostsImgs[5][0][1]=getImage("edible-ghost-blink-2.png");                      
+        ghostsImgs[4][0][0]=getImage(edible + "-1.png");
+        ghostsImgs[4][0][1]=getImage(edible + "-2.png");
+        ghostsImgs[5][0][0]=getImage(edible + "-blink-1.png");
+        ghostsImgs[5][0][1]=getImage(edible + "-blink-2.png");
     }
     
     ////////////////////////////////////////
