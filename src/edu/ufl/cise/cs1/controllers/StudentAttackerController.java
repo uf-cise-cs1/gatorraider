@@ -1,4 +1,4 @@
-package ufl.cs1.controllers;
+package edu.ufl.cise.cs1.controllers;
 
 import game.controllers.AttackerController;
 import game.models.Defender;

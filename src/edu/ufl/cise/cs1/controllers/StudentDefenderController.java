@@ -1,4 +1,4 @@
-package ufl.cs1.controllers;
+package edu.ufl.cise.cs1.controllers;
 
 import game.controllers.DefenderController;
 import game.models.*;
@@ -27,10 +27,6 @@ public final class StudentDefenderController implements DefenderController
 			else
 				actions[i] = -1;
 		}
-		Node myNode = game.getAttacker().getLocation();
-		System.out.println("Node " + myNode + ": " + myNode.getX() + "," + myNode.getY());
-		myNode = game.getCurMaze().getNode(myNode.getX(), myNode.getY());
-		System.out.println("Node " + myNode + ": " + myNode.getX() + "," + myNode.getY());
 
 		return actions;
 	}

@@ -8,8 +8,7 @@ import game.view.*;
 import game.controllers.*;
 import game.controllers.example.*;
 import game.controllers.benchmark.*;
-import ufl.cs1.controllers.StudentAttackerController;
-import ufl.cs1.controllers.StudentDefenderController;
+import edu.ufl.cise.cs1.controllers.StudentAttackerController;
 
 /*
  * This class may be used to execute the game in timed or un-timed modes, with or without
