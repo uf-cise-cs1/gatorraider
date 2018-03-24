@@ -19,7 +19,10 @@ import ufl.cs1.controllers.StudentDefenderController;
  */
 @SuppressWarnings("unused")
 public class Exec
-{	
+{
+	public static boolean logging = false;
+	public static PrintWriter writer = null;
+
 	//Several options are listed - simply remove comments to use the option you want
 	public static void main(String[] args)
 	{
@@ -32,9 +35,9 @@ public class Exec
 		if (args.length > 0)
 		{
 			if (args[0].toLowerCase().equals("-debugexample"))
-				exec.runExperiment(exampleAttacker, defender, 100, true);
+				exec.runExperiment(exampleAttacker, defender, 5, true);
 			else if (args[0].toLowerCase().equals("-debugstudent"))
-				exec.runExperiment(studentAttacker, defender, 100, true);
+				exec.runExperiment(studentAttacker, defender, 5, true);
 			else if (args[0].toLowerCase().equals("-testexample"))
 				exec.runExperiment(exampleAttacker, defender, 100, false);
 			else if (args[0].toLowerCase().equals("-teststudent"))
@@ -81,7 +84,6 @@ public class Exec
      */
     public void runExperiment(AttackerController attackerController, DefenderController defenderController, int trials, boolean debug)
     {
-		PrintWriter writer = null;
 		double avgScore = 0;
     	int tick = 0;
 		game=new _Game_();

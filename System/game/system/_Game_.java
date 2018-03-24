@@ -13,7 +13,7 @@
  */
 package game.system;
 
-import java.util.HashSet;
+import java.util.TreeSet;
 
 public class _Game_ extends _Game
 {
@@ -28,8 +28,8 @@ public class _Game_ extends _Game
 
 		defenders = new _Defender[_Game.NUM_DEFENDER];
 
-		pills = new HashSet(mazes[curMaze].getPillNodes());
-		powerPills=new HashSet(mazes[curMaze].getPowerPillNodes());
+		pills = new TreeSet(mazes[curMaze].getPillNodes());
+		powerPills=new TreeSet(mazes[curMaze].getPowerPillNodes());
 		score=0;
 		levelTime=0;
 		totalTime=0;

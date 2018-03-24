@@ -10,9 +10,9 @@
  * clearly documented. We welcome any comments and suggestions regarding the code.
  */
 package game.system;
-import game.models.*;
 
-import java.util.HashSet;
+import game.models.*;
+import java.util.TreeSet;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -32,7 +32,7 @@ public class _Game implements Game
 	protected static _Maze[] mazes = new _Maze[NUM_MAZES];
 	
 	//Variables (game state):
-	HashSet<Node> pills, powerPills;
+	TreeSet<Node> pills, powerPills;
 //	protected BitSet pills,powerPills;
 
 	//level-specific
@@ -65,8 +65,8 @@ public class _Game implements Game
 	public Game copy()
 	{
 		_Game copy=new _Game();
-		copy.pills= (HashSet<Node>) pills.clone();
-		copy.powerPills = (HashSet<Node>) powerPills.clone();
+		copy.pills= (TreeSet<Node>) pills.clone();
+		copy.powerPills = (TreeSet<Node>) powerPills.clone();
 		copy.curMaze=curMaze;
 		copy.totLevel=totLevel;
 		copy.levelTime=levelTime;
@@ -190,7 +190,7 @@ public class _Game implements Game
 			else
 			{
 				List<Integer> options = attacker.getPossibleDirs(true);
-				direction = options.get(Game.rng.nextInt(options.size()));
+				direction = options.get(rng.nextInt(options.size()));
 			}
 
 		return direction;		
@@ -233,7 +233,7 @@ public class _Game implements Game
 			else
 			{
 				List<Integer> options = defenders[whichEnemy].getPossibleDirs();
-				direction = options.get(Game.rng.nextInt(options.size()));
+				direction = options.get(rng.nextInt(options.size()));
 			}
 		}
 
@@ -275,7 +275,7 @@ public class _Game implements Game
 			
 			reverse = true;
 		}
-		else if (levelTime > 1 && Game.rng.nextDouble() < Game.DEFENDER_REVERSAL)	//random enemy reversal
+		else if (levelTime > 1 && rng.nextDouble() < Game.DEFENDER_REVERSAL)	//random enemy reversal
 			reverse=true;
 		
 		return reverse;

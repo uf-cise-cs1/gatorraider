@@ -23,6 +23,7 @@ public class _Node implements Node
     public int getNumNeighbors() { return numNeighbors; }
     public List<Node> getNeighbors() { return Arrays.asList(Arrays.copyOf(neighbors, neighbors.length)); }
 
+    public String toString() { return "_Node(" + x + ", " + y + ")"; }
     //Returns the neighbor of node index that corresponds to direction. In the case of neutral, the
     //same node index is returned
     public Node getNeighbor(int inDirection)
@@ -35,6 +36,20 @@ public class _Node implements Node
 
     public int getNextDir(Node to, boolean approach) { return getNextDir(to, approach, true, 0); }
     public int getNextDir(Node to, boolean approach, int direction) { return getNextDir(to, approach, false, direction); }
+
+    public int compareTo(Node other)
+    {
+        if (this.y < other.getY())
+            return -1;
+        else if (this.y > other.getY())
+            return 1;
+        else if (this.x < other.getX())
+            return -1;
+        else if (this.x > other.getX())
+            return 1;
+
+        return 0;
+    }
 
     private int getNextDir(Node to, boolean approach, boolean canReverse, int direction)
     {

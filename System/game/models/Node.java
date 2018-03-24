@@ -1,7 +1,7 @@
 package game.models;
 import java.util.List;
 
-public interface Node
+public interface Node extends Comparable<Node>
 {
     int getX();
     int getY();
