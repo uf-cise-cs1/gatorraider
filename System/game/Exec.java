@@ -114,10 +114,10 @@ public class Exec
 
 				if (debug)
 				{
-					writer.print("[Tick #" + tick + "] Attacker: [" + attackerDirection + "]; ");
+					writer.print("[Tick #" + tick + "] Attacker: [DIR: " + attackerDirection + "; POS: " + game.getAttacker().getLocation().getX() + "," + game.getAttacker().getLocation().getY() + "]; ");
 					for (int index = 0; index < 4; index++)
 					{
-						writer.print("Defender #" + index + ": [" + defenderDirections[index] + "]; ");
+						writer.print("Defender #" + index + ": [DIR: " + defenderDirections[index] + "; POS: " + game.getDefender(index).getLocation().getX() + "," + game.getDefender(index).getLocation().getY() + "]; ");
 					}
 					writer.println("");
 				}
