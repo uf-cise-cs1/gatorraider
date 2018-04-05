@@ -168,6 +168,10 @@ public class _Game implements Game
 	protected void updateHero(int direction)
 	{
 		direction = checkHeroDir(direction);
+
+		if (direction == 4) // If the attacker can't move, stop.
+			return;
+
 		attacker.direction = direction;
 		attacker.location = attacker.location.neighbors[direction];
 	}
