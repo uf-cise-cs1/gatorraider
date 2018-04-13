@@ -122,7 +122,6 @@
         <option value="$PROJECT_DIR$/System/game/system/DuoMap.java" />
         <option value="$PROJECT_DIR$/System/game/controllers/DefenderController.java" />
         <option value="$PROJECT_DIR$/System/game/controllers/AttackerController.java" />
-        <option value="$PROJECT_DIR$/System/game/controllers/Human.java" />
         <option value="$PROJECT_DIR$/System/game/controllers/examples/RandomAttacker.java" />
         <option value="$PROJECT_DIR$/System/game/controllers/examples/NearestPillAttackerVS.java" />
         <option value="$PROJECT_DIR$/System/game/controllers/examples/RandomNonRevAttacker.java" />
@@ -319,165 +318,57 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Example - Scored">
+  <component name="RunManager" selected="Application.Human - Visual">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+    </configuration>
     <configuration name="Example - Debug" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="game.Exec" />
-      <option name="VM_PARAMETERS" value="" />
+      <module name="PakuPaku" />
       <option name="PROGRAM_PARAMETERS" value="-debugexample" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/exec" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="PakuPaku" />
-      <envs />
     </configuration>
     <configuration name="Example - Scored" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="game.Exec" />
-      <option name="VM_PARAMETERS" value="" />
+      <module name="PakuPaku" />
       <option name="PROGRAM_PARAMETERS" value="-testexample" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/exec" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="PakuPaku" />
-      <envs />
     </configuration>
     <configuration name="Example - Visual" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="game.Exec" />
-      <option name="VM_PARAMETERS" value="" />
+      <module name="PakuPaku" />
       <option name="PROGRAM_PARAMETERS" value="-visualexample" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/exec" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
+    </configuration>
+    <configuration name="Human - Visual" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="game.Exec" />
       <module name="PakuPaku" />
-      <envs />
+      <option name="PROGRAM_PARAMETERS" value="-visualhuman" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/exec" />
     </configuration>
     <configuration name="TestAgent - Debug" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="game.Exec" />
-      <option name="VM_PARAMETERS" value="" />
+      <module name="PakuPaku" />
       <option name="PROGRAM_PARAMETERS" value="-debugstudent" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/exec" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="PakuPaku" />
-      <envs />
     </configuration>
     <configuration name="TestAgent - Scored" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="game.Exec" />
-      <option name="VM_PARAMETERS" value="" />
+      <module name="PakuPaku" />
       <option name="PROGRAM_PARAMETERS" value="-teststudent" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/exec" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="PakuPaku" />
-      <envs />
     </configuration>
     <configuration name="TestAgent - Visual" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="game.Exec" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/exec" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
       <module name="PakuPaku" />
-      <envs />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <module />
+      <option name="PROGRAM_PARAMETERS" value="-visualstudent" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/exec" />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="game.Exec" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/exec" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-    </configuration>
-    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Ms. Pac-Man" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="ADDITIONAL_ARGS" value="" />
-    </configuration>
-    <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Ms. Pac-Man" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="TARGET" value="" />
-      <option name="SETTINGS_FILE" value="" />
-      <option name="CUSTOM_SETTINGS" value="false" />
-      <option name="USE_OPTIONS" value="false" />
-      <option name="OPTIONS" value="" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Doctests">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Ms. Pac-Man" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" />
@@ -746,17 +637,15 @@
       <option name="_new_target" value="&quot;&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
-    <list size="6">
-      <item index="0" class="java.lang.String" itemvalue="Application.TestAgent - Visual" />
-      <item index="1" class="java.lang.String" itemvalue="Application.Example - Visual" />
-      <item index="2" class="java.lang.String" itemvalue="Application.TestAgent - Scored" />
-      <item index="3" class="java.lang.String" itemvalue="Application.Example - Scored" />
-      <item index="4" class="java.lang.String" itemvalue="Application.Example - Debug" />
-      <item index="5" class="java.lang.String" itemvalue="Application.TestAgent - Debug" />
+    <list>
+      <item itemvalue="Application.Example - Visual" />
+      <item itemvalue="Application.Human - Visual" />
+      <item itemvalue="Application.TestAgent - Visual" />
+      <item itemvalue="Application.Example - Scored" />
+      <item itemvalue="Application.TestAgent - Scored" />
+      <item itemvalue="Application.Example - Debug" />
+      <item itemvalue="Application.TestAgent - Debug" />
     </list>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />

@@ -1,6 +1,8 @@
 package game;
 
 import java.io.PrintWriter;
+
+import edu.ufl.cise.cs1.controllers.AttackerHumanController;
 import game.models.Game;
 import game.system.*;
 import game.view.*;
@@ -27,36 +29,46 @@ public class Exec
 	{
 		Exec exec=new Exec();
 
+		AttackerHumanController humanAttacker = new AttackerHumanController();
 		AttackerController studentAttacker = new StudentAttackerController();
 		AttackerController exampleAttacker = new Devastator();
 		DefenderController defender = new OriginalDefenders();
 
 		if (args.length > 0)
 		{
-			if (args[0].toLowerCase().equals("-debugexample"))
-				exec.runExperiment(exampleAttacker, defender, 5, true);
-			else if (args[0].toLowerCase().equals("-debugstudent"))
-				exec.runExperiment(studentAttacker, defender, 5, true);
-			else if (args[0].toLowerCase().equals("-testexample"))
-				exec.runExperiment(exampleAttacker, defender, 100, false);
-			else if (args[0].toLowerCase().equals("-teststudent"))
-				exec.runExperiment(studentAttacker, defender, 100, false);
-			else if (args[0].toLowerCase().equals("-visualexample"))
-				exec.runGame(exampleAttacker, defender, true, _Game.DELAY);
-			else
-				exec.runGame(studentAttacker, defender, true, _Game.DELAY);
+			switch (args[0].toLowerCase())
+			{
+				case "-debugexample":
+					exec.runExperiment(exampleAttacker, defender, 5, true);
+					break;
+				case "-debugstudent":
+					exec.runExperiment(studentAttacker, defender, 5, true);
+					break;
+				case "-testexample":
+					exec.runExperiment(exampleAttacker, defender, 100, false);
+					break;
+				case "-teststudent":
+					exec.runExperiment(studentAttacker, defender, 100, false);
+					break;
+				case "-visualhuman":
+
+					exec.runGame(humanAttacker, defender, true, _Game.DELAY);
+					break;
+				case "-visualexample":
+					exec.runGame(exampleAttacker, defender, true, _Game.DELAY);
+					break;
+				case "-visualstudent":
+					exec.runGame(studentAttacker, defender, true, _Game.DELAY);
+					break;
+				default:
+					System.err.println("Invalid command line option");
+			}
 		}
 		else
-			exec.runGame(studentAttacker, defender, true, _Game.DELAY);
+			System.err.println("No command line option specified");
 
-		//this can be used for numerical testing (non-visual, no delays)
-//		exec.runExperiment(new RandomAttacker(),new AttractRepelGhosts(true),100);
-		
 		//run game without time limits (un-comment if required)
 //		exec.runGame(new RandomAttacker(),new RandomDefenders(),true,_Game.DELAY);
-		
-		//run game with time limits (un-comment if required)
-//		exec.runGameTimed(new Human(),new AttractRepelGhosts(true),true);
 
 		//run game with time limits. Here NearestPillAttackerVS is chosen to illustrate how to use graphics for debugging/information purposes
 //		exec.runGameTimed(new NearestPillAttackerVS(),new AttractRepelGhosts(false),true);
@@ -156,7 +168,12 @@ public class Exec
 		GameView gv=null;
 		
 		if(visual)
-			gv=new GameView(game).showGame();
+		{
+			gv = new GameView(game).showGame();
+
+			if(attackerController instanceof AttackerHumanController)
+				gv.getFrame().addKeyListener(((AttackerHumanController) attackerController));
+		}
 
 		attackerController.init(game.copy());
 		defenderController.init(game.copy());
@@ -194,8 +211,8 @@ public class Exec
 		{
 			gv=new GameView(game).showGame();
 			
-			if(attackerController instanceof Human)
-				gv.getFrame().addKeyListener((Human) attackerController);
+			if(attackerController instanceof AttackerHumanController)
+				gv.getFrame().addKeyListener((AttackerHumanController) attackerController);
 		}
 
 		attackerController.init(game.copy());
@@ -246,8 +263,8 @@ public class Exec
 		{
 			gv=new GameView(game).showGame();
 			
-			if(attackerController instanceof Human)
-				gv.getFrame().addKeyListener((Human) attackerController);
+			if(attackerController instanceof AttackerHumanController)
+				gv.getFrame().addKeyListener((AttackerHumanController) attackerController);
 		}
 
 		attackerController.init(game.copy());
