@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.*;
 import java.io.PrintWriter;
 import game.models.Game;
 import game.system.*;
@@ -9,6 +10,7 @@ import game.controllers.*;
 import game.controllers.example.*;
 import game.controllers.benchmark.*;
 import edu.ufl.cise.cs1.controllers.StudentAttackerController;
+import platform.PlatformCanvasSurface;
 
 /*
  * This class may be used to execute the game in timed or un-timed modes, with or without
@@ -21,6 +23,7 @@ public class Exec
 {
 	public static boolean logging = false;
 	public static PrintWriter writer = null;
+	private int MAG = 2;
 
 	//Several options are listed - simply remove comments to use the option you want
 	public static void main(String[] args)
@@ -51,33 +54,33 @@ public class Exec
 
 		//this can be used for numerical testing (non-visual, no delays)
 //		exec.runExperiment(new RandomAttacker(),new AttractRepelGhosts(true),100);
-		
+
 		//run game without time limits (un-comment if required)
 //		exec.runGame(new RandomAttacker(),new RandomDefenders(),true,_Game.DELAY);
-		
+
 		//run game with time limits (un-comment if required)
 //		exec.runGameTimed(new Human(),new AttractRepelGhosts(true),true);
 
 		//run game with time limits. Here NearestPillAttackerVS is chosen to illustrate how to use graphics for debugging/information purposes
 //		exec.runGameTimed(new NearestPillAttackerVS(),new AttractRepelGhosts(false),true);
-		
+
 		//this allows you to record a game and replay it later. This could be very useful when
 		//running many games in non-visual mode - one can then pick out those that appear irregular
 		//and replay them in visual mode to see what is happening.
 //		exec.runGameTimedAndRecorded(new RandomAttacker(),new Legacy2TheReckoning(),true,"human-v-Legacy2.txt");
 //		exec.replayGame("human-v-Legacy2.txt");
 	}
-	
+
     protected int pacDir;
     protected int[] ghostDirs;
     protected _Game_ game;
     protected PacMan pacMan;
     protected Ghosts ghosts;
     protected boolean pacmanPlayed,ghostsPlayed;
-   
+
     /*
      * For running multiple games without visuals. This is useful to get a good idea of how well a controller plays
-     * against a chosen opponent: the random nature of the game means that performance can vary from game to game. 
+     * against a chosen opponent: the random nature of the game means that performance can vary from game to game.
      * Running many games and looking at the average score (and standard deviation/error) helps to get a better
      * idea of how well the controller is likely to do in the competition.
      */
@@ -125,13 +128,13 @@ public class Exec
 		        game.advanceGame(attackerDirection, defenderDirections);
 				tick++;
 			}
-			
+
 			avgScore+=game.getScore();
 			attackerController.shutdown(game.copy());
 			defenderController.shutdown(game.copy());
 			System.out.println("Trial #" + i + " complete. Score: " + game.getScore());
 		}
-		
+
 		System.out.println(avgScore/trials);
 		if (writer != null)
 		{
@@ -139,24 +142,31 @@ public class Exec
 			writer.close();
 		}
     }
-    
+
     /*
      * Run game without time limit. Very good for testing as game progresses as soon as the controllers
      * return their action(s). Can be played with and without visual display of game states. The delay
-     * is purely for visual purposes (as otherwise the game could be too fast if controllers compute quickly. 
+     * is purely for visual purposes (as otherwise the game could be too fast if controllers compute quickly.
      * For testing, this can be set to 0 for fasted game play.
      */
 	public void runGame(AttackerController attackerController, DefenderController defenderController, boolean visual, int delay)
 	{
 //		Game.rng = new java.util._Random();
-		
+
 		game=new _Game_();
 		game.newGame();
 
-		GameView gv=null;
-		
+		PlatformCanvasSurface ps = null;
+		GameView gv = null;
+
 		if(visual)
-			gv=new GameView(game).showGame();
+		{
+			gv = new GameView(game, MAG);
+			ps = new PlatformCanvasSurface(gv, game.getWidth()*MAG, game.getHeight()*MAG + 20);
+			gv.setPlatformSurface(ps);
+
+			try{Thread.sleep(2000);}catch(Exception e){}
+		}
 
 		attackerController.init(game.copy());
 		defenderController.init(game.copy());
@@ -170,7 +180,7 @@ public class Exec
 	        try{Thread.sleep(delay);}catch(Exception e){}
 	        
 	        if(visual)
-	        	gv.repaint();
+	        	ps.repaint();
 		}
 
 		attackerController.shutdown(game.copy());
@@ -187,15 +197,20 @@ public class Exec
 		game.newGame();
 		pacMan=new PacMan(attackerController);
 		ghosts=new Ghosts(defenderController);
-		
+
+		PlatformCanvasSurface ps = null;
 		GameView gv=null;
-		
+
 		if(visual)
 		{
-			gv=new GameView(game).showGame();
-			
+			// TODO: Get game view; get frame; link.
+			gv = new GameView(game, MAG);
+			ps = new PlatformCanvasSurface(gv, game.getWidth()*MAG, game.getHeight()*MAG + 20);
+
+			try{Thread.sleep(2000);}catch(Exception e){}
+
 			if(attackerController instanceof Human)
-				gv.getFrame().addKeyListener((Human) attackerController);
+				ps.getFrame().addKeyListener((Human) attackerController);
 		}
 
 		attackerController.init(game.copy());
@@ -218,7 +233,7 @@ public class Exec
 	        game.advanceGame(pacDir,ghostDirs);	        
 	        
 	        if(visual)
-	        	gv.repaint();
+	        	ps.repaint();
 		}
 
 		pacMan.kill();
@@ -239,15 +254,19 @@ public class Exec
 		game.newGame();
 		pacMan=new PacMan(attackerController);
 		ghosts=new Ghosts(defenderController);
-		
+
+		PlatformCanvasSurface ps = null;
 		GameView gv=null;
-		
+
 		if(visual)
 		{
-			gv=new GameView(game).showGame();
-			
+			gv = new GameView(game, MAG);
+			ps = new PlatformCanvasSurface(gv, game.getWidth()*MAG, game.getHeight()*MAG + 20);
+
+			try{Thread.sleep(2000);}catch(Exception e){}
+
 			if(attackerController instanceof Human)
-				gv.getFrame().addKeyListener((Human) attackerController);
+				ps.getFrame().addKeyListener((Human) attackerController);
 		}
 
 		attackerController.init(game.copy());
@@ -270,7 +289,7 @@ public class Exec
 	        int[] actionsTaken=game.advanceGame(pacDir,ghostDirs);	        
 	        
 	        if(visual)
-	        	gv.repaint();
+	        	ps.repaint();
 	        
 	        history=addActionsToString(history,actionsTaken);
         	
@@ -309,12 +328,15 @@ public class Exec
 		attackerController.init(game.copy());
 		defenderController.init(game.copy());
 
-		GameView gv=new GameView(game).showGame();
-		
+		GameView gv = new GameView(game, MAG);
+		PlatformCanvasSurface ps = new PlatformCanvasSurface(gv, game.getWidth()*MAG, game.getHeight()*MAG + 20);
+
+		try{Thread.sleep(2000);}catch(Exception e){}
+
 		while(!game.gameOver())
 		{
 	        game.advanceGame(attackerController.update(game.copy(), 0), defenderController.update(game.copy(), 0));
-	        gv.repaint();
+	        ps.repaint();
 	        
 	        try{Thread.sleep(_Game.DELAY);}catch(Exception e){}
 		}
