@@ -7,8 +7,9 @@ import edu.ufl.cise.gatorraider.system._Game_;
 import edu.ufl.cise.gatorraider.view.GameView;
 import edu.ufl.cise.gatorraider.view.Replay;
 import edu.ufl.cise.lib.platform.PlatformCanvasSurface;
+import edu.ufl.cise.lib.system.AppLoop;
 
-public class GameLoop
+public class GameLoop implements AppLoop
 {
     private static int MAG = 2;
     private static final int GRAPHICAL_DELAY_MS = 2000;
@@ -20,15 +21,15 @@ public class GameLoop
     private int delay;
     private String file;
 
-    int[] defenderDirs;
-    int[] attackerDir;
-    _Game_ game;
-    PacMan pacMan;
-    Ghosts ghosts;
-    String history;
-    int lastLevel;
-    boolean firstWrite;	//this makes sure the content of any existing files is overwritten
-    PlatformCanvasSurface surface;
+    private int[] defenderDirs;
+    private int[] attackerDir;
+    protected _Game_ game;
+    private PacMan pacMan;
+    private Ghosts ghosts;
+    private String history;
+    private int lastLevel;
+    private boolean firstWrite;	//this makes sure the content of any existing files is overwritten
+    private PlatformCanvasSurface surface;
 
     public GameLoop(AttackerController _attacker, DefenderController _defender, boolean _visual, boolean _timed, int _delay, String _file)
     {
@@ -139,7 +140,7 @@ public class GameLoop
     private static PlatformCanvasSurface acquireSurface(_Game_ game, AttackerController attacker, DefenderController defender)
     {
         GameView gv = new GameView(game, MAG);
-        PlatformCanvasSurface surface = new PlatformCanvasSurface(gv, game.getWidth() * MAG, game.getHeight() * MAG + 20);
+        PlatformCanvasSurface surface = new PlatformCanvasSurface(gv, _Game_.WIDTH * MAG, _Game_.HEIGHT * MAG + 20);
         gv.setPlatformSurface(surface);
 
         try
@@ -149,7 +150,7 @@ public class GameLoop
         catch (Exception ignored) { }
 
         if(attacker instanceof AttackerHumanController)
-            surface.getFrame().addKeyListener(((AttackerHumanController) attacker));
+            surface.addListener(((AttackerHumanController) attacker));
 
         return surface;
     }

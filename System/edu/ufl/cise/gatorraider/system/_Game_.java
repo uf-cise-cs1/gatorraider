@@ -18,6 +18,8 @@ import java.util.TreeSet;
 public class _Game_ extends _Game
 {
 	public static final int EDIBLE_ALERT = 30;    //for display only (ghosts turning blue)
+	public static final int WIDTH = 114;
+	public static final int HEIGHT = 130;
 
 	public _Game_()
 	{
@@ -51,14 +53,14 @@ public class _Game_ extends _Game
 	}
 	
 	//Size of the _Maze (for display only)
-	public int getWidth()
+/*	public int getWidth()
 	{
 		return mazes[curMaze].width;
-	}
+	}*/
 	
 	//Size of the _Maze (for display only)
-	public int getHeight()
+/*	public int getHeight()
 	{
 		return mazes[curMaze].height;
-	}
+	}*/
 }

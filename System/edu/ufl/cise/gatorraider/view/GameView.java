@@ -198,7 +198,7 @@ public final class GameView extends CanvasSurface
     private void drawMaze()
     {
         surface.setColor(0);
-        surface.fillRect(0,0,game.getWidth()* magnification,game.getHeight()* magnification +20);
+        surface.fillRect(0, 0, _Game_.WIDTH * magnification, _Game_.HEIGHT * magnification +20);
         
         if(images[game.getCurMazeNum()]!=null)
             surface.drawImage(images[game.getCurMazeNum()],2,6);

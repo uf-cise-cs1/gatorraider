@@ -3,11 +3,12 @@ package edu.ufl.cise.gatorraider.controllers;
 import java.awt.event.*;
 import edu.ufl.cise.gatorraider.controllers.AttackerController;
 import edu.ufl.cise.gatorraider.models.Game;
+import edu.ufl.cise.lib.platform.InputListener;
 
 /*
  * Allows a human player to play the game using the arrow key of the keyboard.
  */
-public class AttackerHumanController implements AttackerController, KeyListener
+public class AttackerHumanController extends InputListener implements AttackerController
 {
     private int lastDir = Game.Direction.EMPTY;
 
