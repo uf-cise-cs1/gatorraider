@@ -208,7 +208,7 @@ public final class GameView extends CanvasSurface
     {
         List<Node> pillNodes = game.getCurMaze().getPillNodes();
 
-        surface.setColor(0x00ffffff);
+        surface.setColor(0xffffffff);
 
         for (Node pill : pillNodes)
         	if (game.checkPill(pill))
@@ -219,7 +219,7 @@ public final class GameView extends CanvasSurface
     {
           List<Node> powerPillNodes = game.getCurMaze().getPowerPillNodes();
           
-          surface.setColor(0x00ffffff);
+          surface.setColor(0xffffffff);
 
           for (Node pill : powerPillNodes)
           	if(game.checkPowerPill(pill))

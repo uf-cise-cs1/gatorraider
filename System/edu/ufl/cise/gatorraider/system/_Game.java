@@ -26,10 +26,10 @@ import java.util.ArrayList;
 public class _Game implements Game
 {	
 	//File names for data
-	public static String[] nodeNames = {"a","b","c","d"};
-	public static String[] distNames = {"da","db","dc","dd"};
+	public static String[] nodeNames = {"a.nodes","b.nodes","c.nodes","d.nodes"};
+	public static String[] distNames = {"a.dist","b.dist","c.dist","d.dist"};
 	public static String pathMazes = "data";
-	
+
 	//Static stuff (mazes are immutable - hence static)
 	protected static _Maze[] mazes = new _Maze[NUM_MAZES];
 	

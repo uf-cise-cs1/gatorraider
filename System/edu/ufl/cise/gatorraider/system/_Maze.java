@@ -89,7 +89,7 @@ public final class _Maze implements Maze
             }
             while (input != null);
 
-            // Load edu.ufl.cise.lib map information
+            // Load map information
             int[] preamble = nodeData.remove();
             int initialHeroIndex = preamble[0];
             int lairIndex = preamble[1];
