@@ -1,7 +1,5 @@
 package edu.ufl.cise.gatorraider.controllers;
 
-import java.awt.event.*;
-import edu.ufl.cise.gatorraider.controllers.AttackerController;
 import edu.ufl.cise.gatorraider.models.Game;
 import edu.ufl.cise.lib.platform.InputListener;
 
@@ -12,38 +10,41 @@ public class AttackerHumanController extends InputListener implements AttackerCo
 {
     private int lastDir = Game.Direction.EMPTY;
 
-    private int directionFromKey(KeyEvent keyEvent)
+    private int directionFromKey(int keyCode)
     {
-        switch (keyEvent.getKeyCode())
+        switch (keyCode)
         {
-            case KeyEvent.VK_UP:
+            case InputListener.KEYCODE_UP:
                 return Game.Direction.UP;
-            case KeyEvent.VK_RIGHT:
+            case InputListener.KEYCODE_RIGHT:
                 return Game.Direction.RIGHT;
-            case KeyEvent.VK_DOWN:
+            case InputListener.KEYCODE_DOWN:
                 return Game.Direction.DOWN;
-            case KeyEvent.VK_LEFT:
+            case InputListener.KEYCODE_LEFT:
                 return Game.Direction.LEFT;
             default:
                 return Game.Direction.EMPTY;
         }
     }
 
-    public void keyPressed(KeyEvent keyEvent)
+    @Override
+    public boolean onKeyDown(int keyCode)
     {
-        lastDir = directionFromKey(keyEvent);
+        lastDir = directionFromKey(keyCode);
+        return true;
     }
 
-    public void keyReleased(KeyEvent keyEvent)
+    @Override
+    public boolean onKeyUp(int keyCode)
     {
-        if (directionFromKey(keyEvent) == lastDir)
+        if (directionFromKey(keyCode) == lastDir)
             lastDir = Game.Direction.EMPTY;
+
+        return true;
     }
 
-    public void keyTyped(KeyEvent e) { }
     public void init(Game game) { }
     public void shutdown(Game game) { }
-
     public int update(Game game,long dueTime)
     {
         return lastDir;
