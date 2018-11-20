@@ -17,8 +17,8 @@ public class _Node implements Node
     public int getY() { return y; }
 
     public boolean isJunction() { return numNeighbors > 2; }
-    public boolean isPill() { return pillIndex <= 0; }
-    public boolean isPowerPill() { return powerPillIndex <= 0; }
+    public boolean isPill() { return pillIndex >= 0; }
+    public boolean isPowerPill() { return powerPillIndex >= 0; }
 
     public int getNumNeighbors() { return numNeighbors; }
     public List<Node> getNeighbors() { return Arrays.asList(Arrays.copyOf(neighbors, neighbors.length)); }
